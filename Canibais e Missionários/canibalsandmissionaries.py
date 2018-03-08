@@ -73,5 +73,114 @@ def check_state(already_chkd, array): #Função para checar se o estado já apar
 	else:
 		return 0
 
-#falta fazer função de geracao
+def m_dead(array): #Retorna 1 caso o número de canibais seja maior que o número de missionários
+	if(array[0] < array[1]):
+		return 1
+	else:
+		return 0 
 
+def wrong_array(array): #Retorna 1 se estado estiver fora do escopo do problema
+	if(array[0] > 3):
+		return 1
+	elif(array[1] > 3):
+		return 1
+	elif(array[0] < 0):
+		return 1
+	elif(array[1] < 0):
+		return 1
+	else:
+		return 0
+
+#Existem 10 casos possíveis para alteração dos números, os mesmos seguem abaixo:
+
+def Caso_1(array):#Retorna o array caso seja possível, senão retorna array 0
+	array[0] = array[0] - 1
+	if(m_dead(array)):
+		return 0
+	elif(wrong_array(array)):
+		return 0
+	else:
+		return array
+
+def Caso_2(array):#Retorna o array caso seja possível, senão retorna array 0
+	array[0] = array[0] - 2
+	if(m_dead(array)):
+		return 0
+	elif(wrong_array(array)):
+		return 0
+	else:
+		return array
+
+def Caso_3(array):#Retorna o array caso seja possível, senão retorna array 0
+	array[0] = array[0] - 1
+	array[1] = array[1] - 1
+	if(m_dead(array)):
+		return 0
+	elif(wrong_array(array)):
+		return 0
+	else:
+		return array
+
+def Caso_4(array):#Retorna o array caso seja possível, senão retorna array 0
+	array[1] = array[0] - 1
+	if(m_dead(array)):
+		return 0
+	elif(wrong_array(array)):
+		return 0
+	else:
+		return array
+
+def Caso_5(array):#Retorna o array caso seja possível, senão retorna array 0
+	array[1] = array[0] - 2
+	if(m_dead(array)):
+		return 0
+	elif(wrong_array(array)):
+		return 0
+	else:
+		return array
+
+def Caso_6(array):#Retorna o array caso seja possível, senão retorna array 0
+	array[0] = array[0] - 1
+	if(m_dead(array)):
+		return 0
+	elif(wrong_array(array)):
+		return 0
+	else:
+		return array
+
+def Caso_7(array):#Retorna o array caso seja possível, senão retorna array 0
+	array[0] = array[0] - 2
+	if(m_dead(array)):
+		return 0
+	elif(wrong_array(array)):
+		return 0
+	else:
+		return array
+
+def Caso_8(array):#Retorna o array caso seja possível, senão retorna array 0
+	array[0] = array[0] - 1
+	array[1] = array[1] - 1
+	if(m_dead(array)):
+		return 0
+	elif(wrong_array(array)):
+		return 0
+	else:
+		return array
+
+def Caso_9(array):#Retorna o array caso seja possível, senão retorna array 0
+	array[1] = array[0] - 1
+	if(m_dead(array)):
+		return 0
+	elif(wrong_array(array)):
+		return 0
+	else:
+		return array
+
+def Caso_10(array):#Retorna o array caso seja possível, senão retorna array 0
+	array[1] = array[0] - 2
+	if(m_dead(array)):
+		return 0
+	elif(wrong_array(array)):
+		return 0
+	else:
+		return array
