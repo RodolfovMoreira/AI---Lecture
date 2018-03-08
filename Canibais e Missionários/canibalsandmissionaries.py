@@ -18,18 +18,6 @@ final_state = [0,0,0] #Estado final
 initial_state = [3,3,1] #Estado inicial
 already_chkd = [[0] for x in range(0,332)] #Array para checar se o estado já apareceu, se sim 1, se não 0
 edge = [] #Nossa borda de estados a serem checados ficará aqui
-
-def add_Missionary(array):
-	array[0] = array[0] + 1
-
-def sub_Missionary(array):
-	array[0] = array[0] - 1
-
-def add_Canibal(array):
-	array[1] = array[1] + 1
-
-def sub_Canibal(array):
-	array[1] = array[1] - 1
 	
 def add_Boat(array):
 	array[2] = array[2] + 1
@@ -140,7 +128,7 @@ def Caso_5(array):#Retorna o array caso seja possível, senão retorna array 0
 		return array
 
 def Caso_6(array):#Retorna o array caso seja possível, senão retorna array 0
-	array[0] = array[0] - 1
+	array[0] = array[0] + 1
 	if(m_dead(array)):
 		return 0
 	elif(wrong_array(array)):
@@ -149,7 +137,7 @@ def Caso_6(array):#Retorna o array caso seja possível, senão retorna array 0
 		return array
 
 def Caso_7(array):#Retorna o array caso seja possível, senão retorna array 0
-	array[0] = array[0] - 2
+	array[0] = array[0] + 2
 	if(m_dead(array)):
 		return 0
 	elif(wrong_array(array)):
@@ -158,8 +146,8 @@ def Caso_7(array):#Retorna o array caso seja possível, senão retorna array 0
 		return array
 
 def Caso_8(array):#Retorna o array caso seja possível, senão retorna array 0
-	array[0] = array[0] - 1
-	array[1] = array[1] - 1
+	array[0] = array[0] + 1
+	array[1] = array[1] + 1
 	if(m_dead(array)):
 		return 0
 	elif(wrong_array(array)):
@@ -168,7 +156,7 @@ def Caso_8(array):#Retorna o array caso seja possível, senão retorna array 0
 		return array
 
 def Caso_9(array):#Retorna o array caso seja possível, senão retorna array 0
-	array[1] = array[0] - 1
+	array[1] = array[0] + 1
 	if(m_dead(array)):
 		return 0
 	elif(wrong_array(array)):
@@ -177,10 +165,24 @@ def Caso_9(array):#Retorna o array caso seja possível, senão retorna array 0
 		return array
 
 def Caso_10(array):#Retorna o array caso seja possível, senão retorna array 0
-	array[1] = array[0] - 2
+	array[1] = array[0] + 2
 	if(m_dead(array)):
 		return 0
 	elif(wrong_array(array)):
 		return 0
 	else:
-		return array
+		return arra
+
+array = 0
+edge.append(initial_state)
+
+while(array != final_state):
+
+	array = edge.pop(0)
+
+	if(array[2] == 1): #Se o barco estiver na esquerda
+
+
+
+	else: #Se o barco estiver na direita
+
