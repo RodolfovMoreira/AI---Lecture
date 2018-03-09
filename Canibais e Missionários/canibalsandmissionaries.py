@@ -52,11 +52,11 @@ def transform_number(array): #transforma o array para número
 
 def set_state(already_chkd, array): #Setar no array de repetições que a respectiva repetição já foi checada
 	index = transform_number(array)
-	array[index] = 1
+	already_chkd[index] = 1
 
 def check_state(already_chkd, array): #Função para checar se o estado já apareceu, se sim 1, se não 0
 	index = transform_number(array)
-	if(array[index] == 1):
+	if(already_chkd[index] == 1):
 		return 1
 	else:
 		return 0
@@ -79,99 +79,134 @@ def wrong_array(array): #Retorna 1 se estado estiver fora do escopo do problema
 	else:
 		return 0
 
+def copy(array):
+	aux = [0,0,0]
+	for i in range(0,3):
+		aux[i] = array[i]
+
+	return aux
+
 #Existem 10 casos possíveis para alteração dos números, os mesmos seguem abaixo:
 
 def Caso_1(array):#Retorna o array caso seja possível, senão retorna array 0
-	array[0] = array[0] - 1
-	if(m_dead(array)):
+	aux = copy(array)
+	aux[0] = aux[0] - 1
+	sub_Boat(aux)
+	if(m_dead(aux)):
 		return 0
-	elif(wrong_array(array)):
+	elif(wrong_array(aux)):
 		return 0
 	else:
-		return array
+		return aux
 
 def Caso_2(array):#Retorna o array caso seja possível, senão retorna array 0
-	array[0] = array[0] - 2
-	if(m_dead(array)):
+	aux = copy(array)
+	aux[0] = aux[0] - 2
+	sub_Boat(aux)
+	if(m_dead(aux)):
 		return 0
-	elif(wrong_array(array)):
+	elif(wrong_array(aux)):
 		return 0
 	else:
-		return array
+		return aux
 
 def Caso_3(array):#Retorna o array caso seja possível, senão retorna array 0
-	array[0] = array[0] - 1
-	array[1] = array[1] - 1
-	if(m_dead(array)):
+	aux = copy(array)
+	aux[0] = aux[0] - 1
+	aux[1] = aux[1] - 1
+	sub_Boat(aux)
+	if(m_dead(aux)):
 		return 0
-	elif(wrong_array(array)):
+	elif(wrong_array(aux)):
 		return 0
 	else:
-		return array
+		return aux
 
 def Caso_4(array):#Retorna o array caso seja possível, senão retorna array 0
-	array[1] = array[0] - 1
-	if(m_dead(array)):
+	aux = copy(array)
+	aux[1] = aux[1] - 1
+	sub_Boat(aux)
+	if(m_dead(aux)):
 		return 0
-	elif(wrong_array(array)):
+	elif(wrong_array(aux)):
 		return 0
 	else:
-		return array
+		return aux
 
 def Caso_5(array):#Retorna o array caso seja possível, senão retorna array 0
-	array[1] = array[0] - 2
-	if(m_dead(array)):
+	aux = copy(array)
+	aux[1] = aux[1] - 2
+	sub_Boat(aux)
+	if(m_dead(aux)):
 		return 0
-	elif(wrong_array(array)):
+	elif(wrong_array(aux)):
 		return 0
 	else:
-		return array
+		return aux
 
 def Caso_6(array):#Retorna o array caso seja possível, senão retorna array 0
-	array[0] = array[0] + 1
-	if(m_dead(array)):
+	aux = copy(array)
+	aux[0] = aux[0] + 1
+	add_Boat(aux)
+	if(m_dead(aux)):
 		return 0
-	elif(wrong_array(array)):
+	elif(wrong_array(aux)):
 		return 0
 	else:
-		return array
+		return aux
 
 def Caso_7(array):#Retorna o array caso seja possível, senão retorna array 0
-	array[0] = array[0] + 2
-	if(m_dead(array)):
+	aux = copy(array)
+	aux[0] = aux[0] + 2
+	add_Boat(aux)
+	if(m_dead(aux)):
 		return 0
-	elif(wrong_array(array)):
+	elif(wrong_array(aux)):
 		return 0
 	else:
-		return array
+		return aux
 
 def Caso_8(array):#Retorna o array caso seja possível, senão retorna array 0
-	array[0] = array[0] + 1
-	array[1] = array[1] + 1
-	if(m_dead(array)):
+	aux = copy(array)
+	aux[0] = aux[0] + 1
+	aux[1] = aux[1] + 1
+	add_Boat(aux)
+	if(m_dead(aux)):
 		return 0
-	elif(wrong_array(array)):
+	elif(wrong_array(aux)):
 		return 0
 	else:
-		return array
+		return aux
 
 def Caso_9(array):#Retorna o array caso seja possível, senão retorna array 0
-	array[1] = array[0] + 1
-	if(m_dead(array)):
+	aux = copy(array)
+	aux[1] = aux[1] + 1
+	add_Boat(aux)
+	if(m_dead(aux)):
 		return 0
-	elif(wrong_array(array)):
+	elif(wrong_array(aux)):
 		return 0
 	else:
-		return array
+		return aux
 
 def Caso_10(array):#Retorna o array caso seja possível, senão retorna array 0
-	array[1] = array[0] + 2
-	if(m_dead(array)):
+	aux = copy(array)
+	aux[1] = aux[1] + 2
+	add_Boat(aux)
+	if(m_dead(aux)):
 		return 0
-	elif(wrong_array(array)):
+	elif(wrong_array(aux)):
 		return 0
 	else:
-		return arra
+		return aux
+
+def confere(array):
+	final = [0,0,0]
+
+	if(array == final):
+		print("TODOS ATRAVESSARAM SÃO E SALVOS! OS MISSIONÁRIOS VIVOS E OS CANIBAIS COM FOME!")
+		return 1
+	return 0
 
 array = 0
 array_aux = 0
@@ -179,53 +214,58 @@ check = 0
 edge.append(initial_state)
 
 while(array != final_state):
-
+	#print('Edge é:',edge)
 	array = edge.pop(0)
 
 	if(array[2] == 1): #Se o barco estiver na esquerda
-
 		array_aux = Caso_1(array)
 		if(array_aux != 0):
+			if(confere(array_aux)):
+				break
 			check = check_state(already_chkd, array_aux)
 			if(check == 0):
 				set_state(already_chkd, array_aux)
-				sub_Boat(array)
 				edge.append(array_aux)
 				print(edge)	
 
 		array_aux = Caso_2(array)
 		if(array_aux != 0):
+			if(confere(array_aux)):
+				break
 			check = check_state(already_chkd, array_aux)
 			if(check == 0):
 				set_state(already_chkd, array_aux)
-				sub_Boat(array)
 				edge.append(array_aux)
 				print(edge)
 
 		array_aux = Caso_3(array)
 		if(array_aux != 0):
+			if(confere(array_aux)):
+				break
+			#print('entrou')
 			check = check_state(already_chkd, array_aux)
 			if(check == 0):
 				set_state(already_chkd, array_aux)
-				sub_Boat(array)
 				edge.append(array_aux)
 				print(edge)
 
 		array_aux = Caso_4(array)
 		if(array_aux != 0):
+			if(confere(array_aux)):
+				break
 			check = check_state(already_chkd, array_aux)
 			if(check == 0):
 				set_state(already_chkd, array_aux)
-				sub_Boat(array)
 				edge.append(array_aux)
 				print(edge)
 
 		array_aux = Caso_5(array)
 		if(array_aux != 0):
+			if(confere(array_aux)):
+				break
 			check = check_state(already_chkd, array_aux)
 			if(check == 0):
 				set_state(already_chkd, array_aux)
-				sub_Boat(array)
 				edge.append(array_aux)
 				print(edge)
 
@@ -233,49 +273,54 @@ while(array != final_state):
 
 		array_aux = Caso_6(array)
 		if(array_aux != 0):
+			if(confere(array_aux)):
+				break
 			check = check_state(already_chkd, array_aux)
 			if(check == 0):
 				set_state(already_chkd, array_aux)
-				sub_Boat(array)
 				edge.append(array_aux)
 				print(edge)
 
 		array_aux = Caso_7(array)
 		if(array_aux != 0):
+			if(confere(array_aux)):
+				break
 			check = check_state(already_chkd, array_aux)
 			if(check == 0):
 				set_state(already_chkd, array_aux)
-				sub_Boat(array)
 				edge.append(array_aux)
 				print(edge)
 
 		array_aux = Caso_8(array)
 		if(array_aux != 0):
+			if(confere(array_aux)):
+				break
 			check = check_state(already_chkd, array_aux)
 			if(check == 0):
 				set_state(already_chkd, array_aux)
-				sub_Boat(array)
 				edge.append(array_aux)
 				print(edge)
 
 		array_aux = Caso_9(array)
 		if(array_aux != 0):
+			if(confere(array_aux)):
+				break
 			check = check_state(already_chkd, array_aux)
 			if(check == 0):
 				set_state(already_chkd, array_aux)
-				sub_Boat(array)
 				edge.append(array_aux)
 				print(edge)
 
 		array_aux = Caso_10(array)
 		if(array_aux != 0):
+			if(confere(array_aux)):
+				break
 			check = check_state(already_chkd, array_aux)
 			if(check == 0):
 				set_state(already_chkd, array_aux)
-				sub_Boat(array)
 				edge.append(array_aux)
 				print(edge)
 
 
 
-print("ENCERROU")
+print("Fim! :)")
