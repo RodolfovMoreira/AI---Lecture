@@ -174,6 +174,8 @@ def Caso_10(array):#Retorna o array caso seja possível, senão retorna array 0
 		return arra
 
 array = 0
+array_aux = 0
+check = 0
 edge.append(initial_state)
 
 while(array != final_state):
@@ -182,7 +184,98 @@ while(array != final_state):
 
 	if(array[2] == 1): #Se o barco estiver na esquerda
 
+		array_aux = Caso_1(array)
+		if(array_aux != 0):
+			check = check_state(already_chkd, array_aux)
+			if(check == 0):
+				set_state(already_chkd, array_aux)
+				sub_Boat(array)
+				edge.append(array_aux)
+				print(edge)	
 
+		array_aux = Caso_2(array)
+		if(array_aux != 0):
+			check = check_state(already_chkd, array_aux)
+			if(check == 0):
+				set_state(already_chkd, array_aux)
+				sub_Boat(array)
+				edge.append(array_aux)
+				print(edge)
+
+		array_aux = Caso_3(array)
+		if(array_aux != 0):
+			check = check_state(already_chkd, array_aux)
+			if(check == 0):
+				set_state(already_chkd, array_aux)
+				sub_Boat(array)
+				edge.append(array_aux)
+				print(edge)
+
+		array_aux = Caso_4(array)
+		if(array_aux != 0):
+			check = check_state(already_chkd, array_aux)
+			if(check == 0):
+				set_state(already_chkd, array_aux)
+				sub_Boat(array)
+				edge.append(array_aux)
+				print(edge)
+
+		array_aux = Caso_5(array)
+		if(array_aux != 0):
+			check = check_state(already_chkd, array_aux)
+			if(check == 0):
+				set_state(already_chkd, array_aux)
+				sub_Boat(array)
+				edge.append(array_aux)
+				print(edge)
 
 	else: #Se o barco estiver na direita
 
+		array_aux = Caso_6(array)
+		if(array_aux != 0):
+			check = check_state(already_chkd, array_aux)
+			if(check == 0):
+				set_state(already_chkd, array_aux)
+				sub_Boat(array)
+				edge.append(array_aux)
+				print(edge)
+
+		array_aux = Caso_7(array)
+		if(array_aux != 0):
+			check = check_state(already_chkd, array_aux)
+			if(check == 0):
+				set_state(already_chkd, array_aux)
+				sub_Boat(array)
+				edge.append(array_aux)
+				print(edge)
+
+		array_aux = Caso_8(array)
+		if(array_aux != 0):
+			check = check_state(already_chkd, array_aux)
+			if(check == 0):
+				set_state(already_chkd, array_aux)
+				sub_Boat(array)
+				edge.append(array_aux)
+				print(edge)
+
+		array_aux = Caso_9(array)
+		if(array_aux != 0):
+			check = check_state(already_chkd, array_aux)
+			if(check == 0):
+				set_state(already_chkd, array_aux)
+				sub_Boat(array)
+				edge.append(array_aux)
+				print(edge)
+
+		array_aux = Caso_10(array)
+		if(array_aux != 0):
+			check = check_state(already_chkd, array_aux)
+			if(check == 0):
+				set_state(already_chkd, array_aux)
+				sub_Boat(array)
+				edge.append(array_aux)
+				print(edge)
+
+
+
+print("ENCERROU")
