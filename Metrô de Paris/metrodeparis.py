@@ -6,26 +6,17 @@
 #----------------------------------------------
 #A abordagem do problema será dar para cada ponto o trajeto mais rápido para todos os outros.
 #
-#Função de avaliação será o tempo gasto, somando: A velocidade do metro (30km/h) e caso haja baldeação, 4 min por linha trocada.
-#Teremos que ter 4 listas para demonstar as estações de cada linha.
-#Primeiro: Função irá procurar na mesma linha a estação com menor distância aplicando a função de avaliação
-#Segundo: Ir adicionando em uma fila de prioridade as estações da linha com seus respectivos pesos
+#Função de avaliação será: A distância do avaliado para o destino e caso não façam parte da mesma linha, soma-se 4.
+#Teremos que ter 4 listas para demonstar as estações em cada linha.
+#Primeiro: Função irá procurar na mesma linha a estação com menor distância aplicando a função de avaliação.
+#Segundo: Procura saber se a estação atual também faz parte de outras linhas, caso positivo repete o primeiro passo.
+#Segundo: Ir adicionando em uma fila de prioridade (regida pela func. avaliação) as estações encontradas no passo 1 e 2.
 #Terceiro: Retirar o primeiro da fila (menor peso) e checar se não é o resultado, se não for, 
-#          adicionar o atual em uma lista de anteriores e dar pop da fila de prioridade.
-#Quarto:  
+#          adicionar o atual em uma lista de anteriores (caminho) e dar pop no primeiro da fila de prioridade.
+#Quarto:  Repetir passos 1, 2 e 3 até que o a estação atual seja a final e então dar print na tela a lista de anteriores.
 #----------------------------------------------
 
-#Pega as listas onde se encontram o atual 
-#Checa se é atual é igual ao final, se sim imprime a lista de prioridades (ver peculiaridades)
-#Para cada elemento de cada lista faz todas as distancias (tirando a origem) para o destino com o seguinte if: -HEURISTICA - pronta
-#   			SE elemento é adjacente com destino: 
-#						salva na fila de prioridade a distancia
-#               ELSE:
-#						salva na fila de prioridade a distancia+4
-#Adiciona atual origem na fila do caminho 
-#Tira o primeiro da fila de prioridade e repete o procedimento
-
-
+#PARA TESTAR O ALGORITMO TROQUE AS ESTAÇÕES NA FUNÇÃO "SEARCH_A" ABAIXO, LEMBRANDO QUE AS ESTAÇÕES SÃO DE E1 ATÉ E14!
 
 
 from queue import PriorityQueue
@@ -103,17 +94,14 @@ def search_A(grafo, azul, amarela, vermelha, verde, atual, destino):
 			tam = len(azul)
 			for i in range(0,tam):
 				aux = fun_heuristica(grafo, azul, amarela, vermelha, verde, azul[i], destino)
-				#print(aux.nome, 'e', aux.distancia, 'na lista azul')
 				if(aux != atual):
 					aux2 = ret_mesmovalor(aux)
 					lista_de_prioridades.put(aux2)
 		if(esta_nalista(atual,amarela)):#Se atual estiver na lista carrega na PriorityQueue todas as dist de cada um pro destino
 			amarela.remove(atual)			
 			tam = len(amarela)
-			#print("ENTREI")
 			for i in range(0,tam):
 				aux = fun_heuristica(grafo, azul, amarela, vermelha, verde, amarela[i], destino)
-				#print(aux.nome, 'e', aux.distancia, 'na lista amarela')
 				if(aux != atual):
 					aux2 = ret_mesmovalor(aux)
 					lista_de_prioridades.put(aux2)
@@ -136,8 +124,6 @@ def search_A(grafo, azul, amarela, vermelha, verde, atual, destino):
 		
 		print(atual.nome)
 		atual = lista_de_prioridades.get(0) #Depois de preenchida a lista, retira o de menor valor
-		#print(atual.nome)
-		#break
 		aux2 = ret_mesmovalor(atual)
 		lista.append(aux2) #Adiciona este de menor valor na lista de caminho e então faz novamente todo o percurso
 
@@ -192,32 +178,8 @@ verde = [E12,E8,E4,E13,E14]
 amarela = [E10,E2,E9,E8,E5,E7]
 azul = [E1,E2,E3,E4,E5,E6]
 
-todos = [E1,E2,E3,E4,E5,E6,E7,E8,E9,E10,E11,E12,E13,E14]
-
-contagem = 0
-
-for x in range(0,len(todos)):
-	for y in range(0,len(todos)):
-		aux_azul = ret_mesmovalor(azul)
-		aux_amarela = ret_mesmovalor(amarela)
-		aux_vermelha = ret_mesmovalor(vermelha)
-		aux_verde = ret_mesmovalor(verde)
-		search_A(grafo, aux_azul, aux_amarela, aux_vermelha, aux_verde, todos[x], todos[y])
-		contagem = contagem + 1
-
-print('Foram efetuados ', contagem, ' cálculos de distância.')
-
-#search_A(grafo, azul, amarela, vermelha, verde, E1, E3)
 
 
-'''E1.set_Distancia(5)
-E2.set_Distancia(10)
-E3.set_Distancia(15)
+search_A(grafo, azul, amarela, vermelha, verde, E1, E3) #SUBSTITUIR 'E1' PELA ESTAÇÃO ORIGEM E 'E3' PELA DESTINO
 
-lista_de_prioridades.put(E2)
-lista_de_prioridades.put(E3)
-lista_de_prioridades.put(E1)
 
-while not lista_de_prioridades.empty():
-	aux = lista_de_prioridades.get(0)
-	print('Nome: ',aux.nome,'Valor: ', aux.distancia)'''
