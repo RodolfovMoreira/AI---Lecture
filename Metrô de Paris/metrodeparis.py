@@ -16,8 +16,8 @@
 #Quarto:  Repetir passos 1, 2 e 3 até que o a estação atual seja a final e então dar print na tela a lista de anteriores.
 #----------------------------------------------
 
-#PARA TESTAR O ALGORITMO TROQUE AS ESTAÇÕES NA FUNÇÃO "SEARCH_A" ABAIXO, LEMBRANDO QUE AS ESTAÇÕES SÃO DE E1 ATÉ E14!
-
+#PARA TESTAR O ALGORITMO TROQUE AS ESTAÇÕES NA FUNÇÃO "SEARCH_A" ABAIXO, LEMBRANDO QUE AS ESTAÇÕES SÃO DE E1 ATÉ E14
+!
 
 from queue import PriorityQueue
 
