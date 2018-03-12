@@ -18,6 +18,6 @@ Pronta!
 
 Em andamento.
 
-### Terceira Questão: Jogo para Dois Jogadores (Minimax)
+### Quarta Questão: Jogo para Dois Jogadores (Minimax)
 
 Em andamento.
