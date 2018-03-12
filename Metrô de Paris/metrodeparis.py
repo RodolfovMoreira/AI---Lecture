@@ -17,7 +17,6 @@
 #----------------------------------------------
 
 #PARA TESTAR O ALGORITMO TROQUE AS ESTAÇÕES NA FUNÇÃO "SEARCH_A" ABAIXO, LEMBRANDO QUE AS ESTAÇÕES SÃO DE E1 ATÉ E14
-!
 
 from queue import PriorityQueue
 
