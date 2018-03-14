@@ -73,6 +73,7 @@ def subida_da_montanha(grafo,solucao_inicial):#Hill-Climbing, procurando solucao
 
 solucao_inicial = [0,9,1,2,7,3,4,8,6,5,0]
 
+
 grafo = [[0,30,84,56,-1,-1,-1,75,-1,80],
 		 [30,0,65,-1,-1,-1,70,-1,-1,40],
 		 [84,65,0,74,52,55,-1,60,143,48],
