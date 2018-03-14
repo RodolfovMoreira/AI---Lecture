@@ -37,9 +37,11 @@ class JogodaVelha:
 		#print(self.posicoes)
 
 	def mostrar_Tabuleiro(self): #Printa o tabuleiro na tela
+		print('----------------------------')
 		print(self.posicoes[0],self.posicoes[1],self.posicoes[2])
 		print(self.posicoes[3],self.posicoes[4],self.posicoes[5])
 		print(self.posicoes[6],self.posicoes[7],self.posicoes[8])
+		print('----------------------------')
 
 	def retorna_JogadasPossiveis(self): #Retorna lista com os índices das possíveis jogadas
 		self.jogadaspossiveis = []
@@ -50,7 +52,8 @@ class JogodaVelha:
 
 	def fazer_Jogada(self, posicao, jogador): #Faz jogada em 'posicao', pelo 'jogador'
 		if(self.posicoes[posicao] == 'x' or self.posicoes[posicao] == 'o'):
-			print("Nesta posição já existe uma jogada, escolha outra: ")
+			#print("Nesta posição já existe uma jogada, escolha outra: ")
+			pass
 		else:
 			self.posicoes[posicao] = jogador
 			self.mostrar_Tabuleiro()
@@ -58,7 +61,7 @@ class JogodaVelha:
 	def pegar_Vencedor(self):
 		for jogador in ("x","o"):
 			for combo in self.combos:
-				if self.posicoes[combo[0]] == jogador and self.posicoes[combos[1]] == jogador and self.posicoes[combos[2]] == jogador:
+				if self.posicoes[combo[0]] == jogador and self.posicoes[combo[1]] == jogador and self.posicoes[combo[2]] == jogador:
 					return jogador
 			if "." not in self.posicoes.values():
 				return "empate"
@@ -72,16 +75,45 @@ class JogodaVelha:
 		return False
 
 	def trocar_Jogador(self, jogador):
-		if jogador = "x"
+		if jogador == "x":
 			return "o"
 		return "x"
 
 	def MINIMAX(self, jogador, profundidade = 0):
-		pass
+		if jogador == "x":
+			best = 1
+		else: 
+			best = -1
+
+		if self.jogo_Completo():
+			if self.pegar_Vencedor() == "x":
+				return -10 + profundidade, None
+			elif self.pegar_Vencedor() == "empate":
+				return 0, None
+			elif self.pegar_Vencedor() == "o":
+				return 10 - profundidade, None
+
+		for jogada in self.retorna_JogadasPossiveis():
+			self.fazer_Jogada(jogada, jogador)
+			val,_ = self.MINIMAX(self.trocar_Jogador(jogador), profundidade+1)
+
+			self.fazer_Jogada(jogada, ".") #Desfaz jogada anterior
+			if jogador == "o":
+				if val > best:
+					best, bestMove = val, jogada
+			else:
+				if val < best:
+					best,bestMove = val, jogada
+
+		return best, bestMove
+
 
 
 
 
 a = JogodaVelha()
 a.criar_Tabuleiro()
-a.mostrar_Tabuleiro()
+a.fazer_Jogada(4,"o")
+a.fazer_Jogada(3,"x")
+val, bestMove = a.MINIMAX("o")
+print('bestMove', bestMove, 'val',val)
