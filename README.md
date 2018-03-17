@@ -43,4 +43,6 @@ Segundo passo: Iterativamente vamos permutar 2 em 2 cidades do resultado inicial
 
 ### Quarta Questão: Jogo para Dois Jogadores (Minimax)
 
-Em andamento.
+Pronta!
+
+Com MINIMAX implementado simulamos uma sequência de jogadas e chamamos a função em um ponto crítico para nos dizer qual a melhor jogada.
