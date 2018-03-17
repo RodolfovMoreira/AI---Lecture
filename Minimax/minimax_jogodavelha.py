@@ -16,7 +16,7 @@
 #             3,4,5,
 #             6,7,8]
 #
-#
+#Dada uma jogada de exemplo usamos o MINIMAX para nos indicar a melhor jogada
 #---------------------------------------------------------------------------------------
 
 class JogodaVelha:
@@ -56,22 +56,24 @@ class JogodaVelha:
 			pass
 		else:
 			self.posicoes[posicao] = jogador
-			self.mostrar_Tabuleiro()
+			#self.mostrar_Tabuleiro()
 
 	def pegar_Vencedor(self):
 		for jogador in ("x","o"):
 			for combo in self.combos:
 				if self.posicoes[combo[0]] == jogador and self.posicoes[combo[1]] == jogador and self.posicoes[combo[2]] == jogador:
 					return jogador
-			if "." not in self.posicoes.values():
-				return "empate"
-			return None
+		if "." not in self.posicoes.values():
+			return "empate"
+		return None
 
 	def jogo_Completo(self): #Verdadeiro caso o jogo tenha terminado, falso o contrário
-		if "." not in self.posicoes.values(): 
-			return True
 		if self.pegar_Vencedor() != None:
 			return True
+		if "." not in self.posicoes.values(): 
+			return True
+		#if self.pegar_Vencedor() != None:
+		#	return True
 		return False
 
 	def trocar_Jogador(self, jogador):
@@ -80,6 +82,8 @@ class JogodaVelha:
 		return "x"
 
 	def MINIMAX(self, jogador, profundidade = 0):
+		bestMove = None
+		#self.mostrar_Tabuleiro()  #Descomentar para ver a árvore sendo criada
 		if jogador == "x":
 			best = 1
 		else: 
@@ -104,16 +108,30 @@ class JogodaVelha:
 			else:
 				if val < best:
 					best,bestMove = val, jogada
-
 		return best, bestMove
 
 
 
-
-
+print('Nosso tabuleiro é:')
+print('----------------------------')
+print(0,1,2)
+print(3,4,5)
+print(6,7,8)
+print('----------------------------')
+print('Agora depois da seguinte jogada (Começamos jogando e somos o "O"):')
 a = JogodaVelha()
 a.criar_Tabuleiro()
-a.fazer_Jogada(4,"o")
+a.fazer_Jogada(0,"o")
 a.fazer_Jogada(3,"x")
+a.fazer_Jogada(1,"o")
+a.fazer_Jogada(5,"x")
+a.mostrar_Tabuleiro()
+print('----------------------------')
+
+
 val, bestMove = a.MINIMAX("o")
-print('bestMove', bestMove, 'val',val)
+
+print('O melhor lugar para fazer uma jogada é na posição:',bestMove)
+print('----------------------------')
+#print('bestMove', bestMove, 'val',val)
+#a.mostrar_Tabuleiro()
